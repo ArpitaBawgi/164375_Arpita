@@ -1,0 +1,314 @@
+q1
+
+ SELECT * FROM DEPT;
+
+****************
+Q2
+
+ SELECT * FROM EMP;
+
+********************
+Q3
+
+SELECT * FROM dept WHERE deptno=30;
+
+***************************
+q4
+
+ SELECT empno,ename,deptno FROM emp WHERE job='clerk';
+
+note- data will be case sensitive. So only one output occured for job='clerk';
+output:      EMPNO ENAME          DEPTNO
+---------- ---------- ----------
+      7369 smith              20
+
+
+SELECT empno,ename,deptno FROM emp WHERE job='CLERK';
+
+note- and for this the output is
+
+   EMPNO ENAME          DEPTNO
+---------- ---------- ----------
+      7876 ADAMS              20
+      7900 JAMES              30
+      7934 MILLER             10
+
+********************************
+Q5.
+
+SELECT deptno,ename FROM emp WHERE deptno>=20;
+
+o/p:
+  DEPTNO ENAME
+---------- ----------
+        20 smith
+        30 ALLEN
+        30 WARD
+        20 JONES
+        30 MARTIN
+        30 BLAKE
+        20 SCOTT
+        30 TURNER
+        20 ADAMS
+        30 JAMES
+        20 FORD
+
+***********************************
+Q6.
+
+ SELECT * FROM emp WHERE comm>sal;
+
+************************************
+Q7.
+
+SELECT * FROM emp WHERE comm>(0.6*sal);
+
+************************************
+Q8.
+
+ SELECT * FROM emp WHERE comm>(0.5*sal);
+
+***************************************
+
+Q9.
+
+ SELECT ename,job,sal FROM emp WHERE (deptno=20 and sal>2000);
+
+********************************************
+ Q10.
+
+SELECT * FROM emp WHERE (deptno=30 and sal>=1500 and job='SALESMAN');
+
+************************************************
+Q11.
+
+ SELECT * FROM emp WHERE job IN ('MANAGER','PRESIDENT');
+******************************************************************
+SELECT * FROM emp WHERE job NOT IN ('MANAGER','PRESIDENT');
+
+note - this is for neither
+
+
+**********************************************
+
+qQ12.
+ SELECT * FROM emp WHERE (deptno!=30 and sal>=1500 and job='MANAGER');
+
+*********************************
+
+q13.
+
+ SELECT * FROM emp WHERE (job='MANAGER' or job='CLERK') and deptno=10;
+
+q14.
+
+ SELECT * FROM emp WHERE (job='CLERK' and deptno=10) or (job='MANAGER');
+
+q15.
+
+ SELECT * FROM emp WHERE (job='CLERK' and deptno=20) or (job='MANAGER' and deptno=10);
+
+q16.
+
+ SELECT * FROM emp WHERE job NOT IN('CLERK','MANAGER') and sal>=2000;
+
+q17.
+
+SELECT * FROM emp WHERE sal BETWEEN 1200 and 1400;
+
+Q18.
+
+SELECT * FROM emp WHERE job IN ('CLERKS','ANALYST','SALESMAN');
+
+Q19.
+
+SELECT * FROM emp WHERE job NOT IN ('CLERKS','ANALYST','SALESMAN');
+
+Q20.
+
+SELECT * FROM emp WHERE comm is NULL;
+
+q21.
+
+SELECT * FROM emp WHERE comm=0;
+
+Q22.
+
+ SELECT job FROM emp WHERE COMM>0;
+or
+ SELECT unique job FROM emp WHERE COMM>0;
+
+q23.
+
+ SELECT * FROM emp WHERE comm is null or comm<100;
+
+q24.
+
+ SELECT ename,sal+nvl(comm,250) FROM emp;
+
+q25.
+SELECT * FROM emp WHERE sal+comm>2000;
+
+q26.
+
+ SELECT ename FROM emp WHERE ename like 'M%';
+
+q27.
+
+ SELECT ename FROM emp WHERE ename like '%M';
+
+q28.
+
+ SELECT ename FROM emp WHERE ename like '%M%';
+
+q29.
+
+SELECT ename FROM emp WHERE ename like '____N';
+
+q30.
+
+SELECT ename FROM emp WHERE ename like '__R%';
+
+***********************************************************************************************************************
+NUMERIC,CHARACTER AND DATE FUNCTION
+
+Q31.
+
+ SELECT ename FROM emp WHERE hiredate like '%FEB%';
+
+Q32.
+
+select ename,
+  2         hiredate
+  3  from   emp
+  4  where  to_char(hiredate,'DD')>29;
+
+or
+
+ SELECT last_day(HIREDATE) FROM emp;
+SELECT last_day(HIREDATE) FROM emp WHERE HIREDATE=LAST_DAY(HIREDATE);
+
+q33.
+
+ SELECT ename FROM emp WHERE (sysdate-hiredate)>12;
+
+q34.
+
+ SELECT ename FROM emp WHERE job='MANAGER' and HIREDATE LIKE '*2007';
+
+q35.
+
+SELECT ename||','||job FROM emp;
+
+q36.
+
+SELECT INITCAP(ENAME) FROM EMP;
+
+Q37.
+SELECT LPAD(ENAME,15) FROM EMP;
+
+--for right alignment.
+
+
+q38.
+
+SELECT RPAD(ENAME,15,'_') FROM EMP;
+
+q39.
+
+SELECT length(ename) FROM emp;
+
+q40.
+
+q41.
+
+ SELECT TRIM(LEADING  'A' FROM ENAME) FROM EMP;
+
+q42.
+
+SELECT TRIM(TRAILING  'R' FROM ENAME) FROM EMP;
+
+Q43.
+
+ SELECT SUBSTR(ename,1,3) FROM emp;
+
+Q44.
+SELECT SUBSTR(ename,-3) FROM emp;
+
+Q45.
+
+ SELECT REPLACE(ename,'a','e') FROM emp;
+
+q46.
+
+ SELECT INSTR(ename,'AR',1,1) from emp;
+
+q47.
+
+ SELECT ROUND(SAL,-3) FROM EMP;
+
+note: -3indicates from unit place, if u give +3 it will rounded for decimals.
+
+q48.
+ SELECT sal/30 FROM emp;
+
+q49.
+
+  SELECT ename, CASE  when sal*0.2>500 then 500 else sal*0.2 end FROM emp;
+
+q50.
+
+  SELECT ename, CASE  when sal*0.2>200 then 500 else sal*0.2 end FROM emp;
+
+q51.
+
+SELECT ENAME,ROUND(SYSDATE-HIREDATE,-1) AS "NUM OF DAYS" FROM EMP;
+
+Q52.
+
+ SELECT MONTHS_BETWEEN (SYSDATE,HIREDATE) FROM EMP;
+
+Q53.
+
+select sysdate,
+  2    hiredate,
+  3    trunc(months_between(sysdate,hiredate) / 12) as years,
+  4    trunc(months_between(sysdate,hiredate) -
+  5      (trunc(months_between(sysdate,hiredate) / 12) * 12)) as months,
+  6    trunc(sysdate)
+  7      - add_months(hiredate, trunc(months_between(sysdate,hiredate))) as days
+  8  from emp;
+
+**********************************************
+3.
+
+q55.
+
+select ename  from emp
+  2  group by ename
+  3  order by ename asc;
+
+***********************************
+q56.
+
+SELECT ename,hiredate FROM emp
+  2  ORDER BY hiredate asc;
+
+******************************
+q57.
+
+SELECT ENAME,JOB,SAL FROM EMP
+  2  ORDER BY 2,3 ASC;
+
+*******************************
+*******************************
+Q60.
+
+SELECT ENAME,EXTRACT(MONTH FROM HIREDATE) AS MONTH, EXTRACT(YEAR FROM HIREDATE) AS YEAR FROM EMP ORDER BY E
+XTRACT(MONTH FROM HIREDATE);
+
+
+********************************
+Q61.
+SELECT ENAME,EXTRACT(MONTH FROM HIREDATE) AS MONTH, EXTRACT(YEAR FROM HIREDATE) AS YEAR FROM EMP ORDER BY E
+XTRACT(MONTH FROM HIREDATE) ASC, EXTRACT(YEAR FROM HIREDATE) DESC;
