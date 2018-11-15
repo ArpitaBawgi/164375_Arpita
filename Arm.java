@@ -2,15 +2,15 @@ package com.arpita.java;
 
 public class Arm {
 	public static void main(String[] args)
-	  {   int value=153;
-		  int temp=value;
+	  {   int n=153;
+		  int temp=n;
 	      int rem,res=0;
 		  
 		  while(value>0)
 		  {
-			  rem =value%10;
+			  rem =n%10;
 			  res=res+(rem*rem*rem);
-			 value=value/10;
+			 n=n/10;
 			 
 			 
 		  }
