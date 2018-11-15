@@ -12,11 +12,11 @@ public class StudentMarks {
 		System.out.println("Enter the student name");
 		name=sc.next();
 		System.out.println("Enter the marks of student");
-		System.out.println("Enter the student1 A's marks: ");
+		System.out.println("Enter the student"+i+" A's marks: ");
 		a=sc.nextInt();
-		System.out.println("Enter the student1 B's marks: ");
+		System.out.println("Enter the student"+i+" B's marks: ");
 		b=sc.nextInt();
-		System.out.println("Enter the student1 C's marks: ");
+		System.out.println("Enter the student"+i+" C's marks: ");
 		c=sc.nextInt();
 		total=a+b+c/3;
 		avg=total/3;
