@@ -6,6 +6,12 @@ public class TaxCal {
 
 	
 	public static void main(String[] args) {
+		TaxCal taxcal=new TaxCal();
+		taxcal.taxCalculation();
+		
+	}
+	
+	public void taxCalculation(){
          	Scanner ac=new Scanner(System.in);
          	System.out.println("Enter the salary: ");
          	int sal=ac.nextInt();
