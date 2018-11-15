@@ -19,7 +19,7 @@ public class SimpleInt {
 		
 		System.out.println(SI);
 		
-		float compoundInterest= (float) (p*(Math.pow((1 + r / 100), t))); ;
+		float compoundInterest= (float) (p-(p*(Math.pow((1 + r / 100), t)))); ;
 		
 		System.out.println("compond interest is:"+compoundInterest);
 		}
