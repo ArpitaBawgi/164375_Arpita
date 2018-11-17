@@ -1,8 +1,9 @@
-package bank.arpita.com; import java.util.Set;
+package bank.arpita.com; 
+import java.util.Set;
 
 //collections of logical classes
 
-public class BankAccount {
+public abstract class BankAccount {
 	
 	//static variable
 	private static int autoAccountNo;
@@ -11,7 +12,7 @@ public class BankAccount {
       private int accountNo;  //v cannot use instance variables til v create objects 
                                     //static to be declared wen u want declare in common to all obj
       private String accountHolderName;
-      private double accountBalance;
+      protected double accountBalance;
       
       //init block
       {
@@ -46,16 +47,40 @@ public class BankAccount {
 	}
       public void withdraw(double amount) {
     	this.accountBalance-=amount;
+    	if (amount<=0){
+    		System.out.println("Enter the valid input");
+    	}
+    	else if(amount>accountBalance){
+    		
+    		System.out.println("Minimum amount to be maintained is Rs.1000");
+    	}
+    	else{
+    		this.accountBalance-=amount;
+    		System.out.println("");
+    	}
       }
       public void deposit(double amount) {
-    	  this.accountBalance+=amount;                          
+    	  this.accountBalance+=amount;   
+    	  if (amount<=0){
+      		System.out.println("Enter the valid input");
+      	}
+    	  else{
+    		  this.accountBalance+=amount;
+    		  System.out.println("The available acccount Balance is:"+accountBalance);
+    	  }
 		
 	}
       
       
 public static void main(String[] args) {
-	BankAccount acc= new BankAccount();
-	BankAccount acc2= new BankAccount("Arpita",5000);
+	
+    CurrentAccount c1=new CurrentAccount("arpita",40000);
+    System.out.println("balance before withdraw:"+c1.getAccountBalance());
+    System.out.println("odlimit balance after withdraw:"+c1.getodLimit());
+    c1.withdraw(50000);
+    System.out.println("balance after withdraw:"+c1.getAccountBalance());
+    System.out.println("odlimit balance after withdraw:"+c1.getodLimit());
+	//BankAccount acc2= new BankAccount("Arpita",5000);
 }
 }
 
@@ -84,9 +109,10 @@ public static void main(String[] args) {
 //Access specifier
 
 //within class
-//private:yes--- public=yes--default---s
+//private:yes--- public=yes--default---s......
 //outside class but within same package
 //private:no---public yes-- def--yes
 //outside class as well as outside package
 //private no--- public yes----- import that package, ceate object of that class and access it,---default no
 
+//outside

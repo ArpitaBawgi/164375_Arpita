@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>MyCalculator</title>
+
+<script type="text/javascript">
+var a,b;
+//a=parseInt(prompt("Enter the First Value: ");
+//b=parseInt(prompt("Enter the Second Value: ");
+
+function setValues(){
+a=Number(document.getElementById("a").value);
+b=Number(document.getElementById("b").value);
+}
+
+function sum(){
+setValues();
+result=a+b;
+alert("The Sum is: "+result);
+}
+function subtract(){
+setValues();
+result=a-b;
+alert("The Difference is: "+result);
+}
+function multiply(){
+setValues();
+result=a*b;
+alert("The product is: "+result);
+}
+function divison(){
+setValues();
+result=a/b;
+alert("The Division is: "+result);
+}
+
+function Exponential(){
+setValues();
+result=a*Math.exp(b);
+alert("the exponential is:,"+result);
+}
+</script>
+</head>
+
+<body>
+
+<div><center>
+<input id="a" type="number" placeholder="Enter number1"/>
+ <input id="b" type="number" placeholder="Enter number2"/>
+<br />
+<br />
+<input type="button" onclick="sum()" value="Sum"/>
+<input type="button" onclick="subtract()" value="Subtract"/>
+<input type="button" onclick="multiply()" value="Mutiply"/>
+<input type="button" onclick="divison()" value="Division"/>
+<input type="button" onclick="Exponential()" value="Exponential"/>
+</div>
+</body>
+</html>
