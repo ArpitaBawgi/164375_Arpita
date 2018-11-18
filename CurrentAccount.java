@@ -1,56 +1,19 @@
-package bank.arpita.com;
-import bank.arpita.com.BankAccount;
+package com.arpita.oops;
 
-
-public class CurrentAccount extends BankAccount {
-	
-	public CurrentAccount() {
-		// TODO Auto-generated constructor stub
-	}
-
-	 private double odlimit; 
-	 {//init block
-	 odlimit=20000;
-	}
-	 public CurrentAccount(String accountHolderName, double accountBalance){
-  	   super(accountHolderName,accountBalance);
-     }
-	 public double getodLimit(){
-		 
-		 return this.odlimit;
-	 }
-
-public void withdraw(double amount){
-	/*if(amount<=0){
-		System.out.println("invalid amount");
+public class CurrentAccount extends BankA{
 		
-	}
-	else if(this.accountBalance+odlimit){
-		
-		
-	}
-	*/
-	
-	double bal=getAccountBalance();
-	double remainingBal;
-	if(amount <=0){
-		
-		System.out.println("invalid amount");
-	}
-	
-	else if(amount>this.accountBalance && amount<(this.accountBalance+this.odlimit)){
-		remainingBal=amount-this.accountBalance;
-		this.accountBalance=0;
-		this.odlimit-=remainingBal;
-	}
-		
-	else{
-			this.accountBalance-=amount;
+		void fixeddeposit(){
+		    int Balance=35000;
+			System.out.println("Your Fixed Deposit initial Balance:"+Balance);
+			
 		}
-	}
-	
-	
-	
+	  
+		void totalcash()
+		{   int TotalBalance =40000;
+		 	System.out.println("your total Balance now is:"+ TotalBalance);
+			
+		}
+
+		public void creditcard() {}
+		
 }
-
-
