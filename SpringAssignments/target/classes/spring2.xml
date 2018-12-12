@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" 
+"http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+<bean id="quest" class="com.spring2.Question">
+<property name="questionId" value="1"></property>
+<property name="question" value="What's going on?"></property>
+
+<property name="answers" >
+<list>
+<value>Chatting</value>
+<value>Listening Music</value>
+<value>WatchingTV</value>
+</list>
+</property>
+
+<property name="answers2">
+<set>
+<value>Chatting</value>
+<value>Listening Music</value>
+<value>WatchingTV</value>
+</set>
+</property>
+
+
+<property name="answer3">
+<map>
+
+<entry key="1" value="Chatting" />
+<entry key="2" value="Listening Music" />
+<entry key="3" value="WatchingTV" />
+
+</map>
+</property>
+</bean>
+
+
+</beans>
