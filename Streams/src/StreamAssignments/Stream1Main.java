@@ -44,30 +44,46 @@ public class Stream1Main {
 				.map(f -> f.getName() + " : " + f.getColor())
 				.forEach(System.out::println);
 
-System.out.println("-------------------------------------------");
-System.out.println("-------------------------------------------");
+		System.out.println("-------------------------------------------");
+		System.out.println("-------------------------------------------");
 
 		List<News> news = new ArrayList<News>();
 		news.add(new News(120, "Arpita", "Sneha", "Have a nice day"));
-		news.add(new News(210, "Rashmi", "ashu", "see you later, make a good budgets"));
+		news.add(new News(210, "Rashmi", "ashu",
+				"see you later, make a good budgets"));
 		news.add(new News(120, "Arpita", "abhi", "Read novels with good budget"));
 		news.add(new News(122, "chaya", "Sneha", "nice child"));
 		news.add(new News(120, "Arpita", "suma", "Read books"));
 
 		System.out.println("\n" + news);
-		
-		
+
 		System.out.println("No of times 'budget' used in comments is: ");
-		System.out.println(news.stream().filter(x->x.getComment().contains("budget")).count());
+		System.out.println(news.stream()
+				.filter(x -> x.getComment().contains("budget")).count());
 
-System.out.println("-------------------------");
-		//6 question max commented user
+		System.out
+				.println("---------------------------------------------------------------");
+
+		// 6 question max commented user
 		System.out.println("user has posted maximum comments: ");
-		System.out.println(news.stream().max(Comparator.comparing(News::getCommentByUser)).get().commentByUser);
+		System.out
+				.println(news.stream()
+						.max(Comparator.comparing(News::getCommentByUser))
+						.get().commentByUser);
 
-		//Display commentByUser wise number of comments
-		
-		
+		System.out.println("\n");
+
+		// /Display commentByUser wise number of comments
+		Map<String, Long> var = news
+				.stream()
+				.map(v -> v.commentByUser)
+				.collect(
+						Collectors.groupingBy(Function.identity(),
+								Collectors.counting()));
+		System.out.println("\nDisplay commentByUser wise number of comments: "
+				+ var);
+		System.out.println("\n\n");
+
 		ArrayList<Integer> newsfind = (ArrayList<Integer>) news.stream()
 				.map(index -> index.getNewsId()).collect(Collectors.toList());
 		Map<Integer, Long> mp = newsfind.stream().collect(
@@ -83,14 +99,15 @@ System.out.println("-------------------------");
 				key = Entry.getKey();
 			}
 		}
-		System.out.println("the newsId which has received maximum comments : "+key);
+		System.out.println("the newsId which has received maximum comments : "
+				+ key);
 		System.out.println("The max times theperson commented is: " + maxvalue
 				+ " The maxtimes commented  person's newsId is: " + key);
 
-System.out.println("---------------------------------");
-System.out.println("---------------------------------");
-		
-System.out.println("q3");
+		System.out.println("---------------------------------");
+		System.out.println("---------------------------------");
+
+		System.out.println("q3");
 
 		List<Trader> trader = new ArrayList<Trader>();
 		trader.add(new Trader("Sindhu", "Shirsi"));
@@ -132,8 +149,41 @@ System.out.println("q3");
 		System.out.println("--------------------");
 		System.out.println("--------------------");
 		System.out.println("\nq4");
-		List<Transactions> trans = new ArrayList<Transactions>();
-		// trans.add(new Transactions(new("rashmi","blore"), 2018, 2));
 
+		System.out.println("--------------------------------------------");
+		System.out.println("-----------------------------------------------");
+
+		List<Transactions> trans = new ArrayList<Transactions>();
+		Trader t1 = new Trader("abhi", "Delhi");
+		trans.add(new Transactions(t1, 1996, 350));
+
+		Trader t2 = new Trader("shri", "banglore");
+		trans.add(new Transactions(t2, 2000, 250));
+
+		Trader t3 = new Trader("mallika", "Delhi");
+		trans.add(new Transactions(t3, 2005, 150));
+
+		Trader t4 = new Trader("Amuda", "chennai");
+		trans.add(new Transactions(t4, 2010, 750));
+
+		trans.stream()
+				.filter(t -> t.getTrader().getCity() == "Delhi")
+				.map(t -> t.getTrader().getCity() + ": " + t.getYear()
+						+ "value: " + t.getValue())
+				.forEach(System.out::println);
+
+		Transactions maxv = trans.stream()
+				.max(Comparator.comparing(Transactions::getValue)).get();
+		System.out.println("\nThe max value is: " + maxv);
+
+		Transactions minv = trans.stream()
+				.min(Comparator.comparing(Transactions::getValue)).get();
+		System.out.println("\nThe max value is: " + minv);
+
+		
+
+		trans.stream().filter(t -> t.getYear() == 2005)
+				.sorted(Comparator.comparing(Transactions::getValue))
+				.map(t -> "The year: "+t.getYear() + "  The value: " + t.getValue()).forEach(System.out::println);
 	}
 }

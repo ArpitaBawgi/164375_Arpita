@@ -1,4 +1,4 @@
-package com.bankapp;
+/*package com.bankapp;
 
 import java.util.ArrayList;
 
@@ -16,4 +16,4 @@ public class BankAccountRepositoryDAO {
 	public ArrayList<BankAccount> getallUsers(){
 		return list;
 	}
-}
+}*/

@@ -4,13 +4,14 @@ public class Transactions {
 	Trader trader;
 	int year;
 	
+	
+	public Trader getTrader() {
+		return trader;
+	}
 	@Override
 	public String toString() {
 		return "Transactions [trader=" + trader + ", year=" + year + ", value="
 				+ value + "]";
-	}
-	public Trader getTrader() {
-		return trader;
 	}
 	public void setTrader(Trader trader) {
 		this.trader = trader;

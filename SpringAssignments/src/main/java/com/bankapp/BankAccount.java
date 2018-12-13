@@ -7,6 +7,17 @@ public class BankAccount {
       private double accountBalance;
       
       
+      
+      
+	public BankAccount(int accountId, String accountHolderName,
+			String accountType, double accountBalance) {
+		super();
+		this.accountId = accountId;
+		this.accountHolderName = accountHolderName;
+		this.accountType = accountType;
+		this.accountBalance = accountBalance;
+	}
+
 	public int getAccountId() {
 		return accountId;
 	}
@@ -26,15 +37,6 @@ public class BankAccount {
 	public double getAccountBalance() {
 		return accountBalance;
 	}
-	
-	public BankAccount(int accountId, String accountHolderName,
-			String accountType, double accountBalance) {
-		super();
-		this.accountId = accountId;
-		this.accountHolderName = accountHolderName;
-		this.accountType = accountType;
-		this.accountBalance = accountBalance;
-	}
 
 	@Override
 	public String toString() {
@@ -42,6 +44,13 @@ public class BankAccount {
 				+ accountHolderName + ", accountType=" + accountType
 				+ ", accountBalance=" + accountBalance + "]";
 	}
+
+	public void setAccountBalance(double d) {
+		this.accountBalance=accountBalance;
+		
+	}
+
+	
       
       
 }

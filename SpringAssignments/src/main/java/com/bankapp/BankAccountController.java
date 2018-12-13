@@ -1,16 +1,26 @@
 package com.bankapp;
 
 public class BankAccountController {
+	
+	private BankAccountServiceImpl bankAccountServiceImpl;
+	
+	
+	public BankAccountController(BankAccountServiceImpl bankAccountServiceImpl) {
+		super();
+		this.bankAccountServiceImpl = bankAccountServiceImpl;
+	}
+	
+	
 	public double withdraw(long accountId, double balance) {
-		return 0;
+		return bankAccountServiceImpl.withdraw(accountId, balance);
 	}
 	public double deposit(long accountId, double balance) {
-		return 0;
+		return bankAccountServiceImpl.deposit(accountId, balance);
 	}
 	public double getBalance(long accountId) {
-		return 0;
+		return bankAccountServiceImpl.getBalance(accountId);
 	}
 	public boolean fundTransfer(long fromAccount, long toAccount, double amount) {
-		return false;
+		return bankAccountServiceImpl.fundTransfer(fromAccount, toAccount, amount);
 	}
 }
