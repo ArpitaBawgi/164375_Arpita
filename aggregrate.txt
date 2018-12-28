@@ -1,0 +1,112 @@
+1. use db.zipcodes.find() to filter results to only the results where city is ATLANTA and state is GA.
+
+db.zipcodes.find({city:"ATLANTA", state:"GA"})
+
+-----------------------------------------------------------
+
+2. use db.zipcodes.aggregate with $match to do the same as above.
+
+db.zipcodes.aggregate([{$match:{city:"ATLANTA"}}])
+------------------------------------------------------------
+
+3. use $group to count the number of zip codes in Atlanta.
+
+db.zipcodes.aggregate([{$match:{city:"ATLANTA"}},{$group:{_id:"$city",myCount:{$sum:1}}}])
+ 
+
+---------------------------------------------------------
+
+4. use $group to find the total population in Atlanta
+
+db.zipcodes.aggregate([{$match:{city:"ATLANTA"}},{$group:{_id:"$city",sum:{$sum:"$pop"}}}])
+
+=====================================================================================
+======================================================================================
+
+Populations by City
+
+1. use aggregate to calculate the total population for each city (you have to use city/state combination). You can use a combination for the _id of the $group: { city: '$city', state: '$state' }
+
+db.zipcodes.aggregate([{$group:{_id:"$state",sum:{$sum:"$pop"}}} ])
+
+------------------------------------------------------
+
+2.sort the results by population, highest first
+
+db.zipcodes.aggregate([{$group:{_id:"$state",sort:{$sort:"$pop"}}}])
+
+------------------------------------------------
+3.limit the results to just the first 3 results. What are the top     3 cities in population?
+
+db.zipcodes.aggregate([{$group:{_id:{"state":"$state",city:"$city"},mycount:{"$sum":"$pop"}}},{$sort:{"mycount":-1}},{$limit:3}])
+
+
+4.What are the top 3 cities in population in Texas?
+
+db.zipcodes.aggregate([{$match:{state:"TX"}},{$group:{_id:{city:"$city", state:"$state"},count:{sum:"$pop"}}},{$sort:{"count":-1}},{"$limit":3}])
+------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+
+
+Bonus
+
+
+1.Write a query to get the average city population for each state.
+
+db.zipcodes.aggregate([{$group:{_id:{city:"$city"},average:{$avg:"$pop"}}}])
+
+2
+
+db.zipcodes.aggregate([{$group:{_id:{city:"$city"},average:{$avg:"$pop"}}},{$limit:3}])
+
+------------------------------------------------------------------------------------------------
+
+
+
+Restaurent assignments......
+
+1)    db.Addresses.find().pretty();
+
+2)    db.Addresses.find({},{restaurant_id:1,name:1,borough:1,cuisine:1}).pretty()
+
+3)    db.Addresses.find({},{restaurant_id:1,name:1,borough:1,cuisine:1,_id:0}).pretty()
+
+4)    db.Addresses.find({},       {restaurant_id:1,name:1,borough:1,"address.zipcode":1,cuisine:1,_id:0}).pretty()
+
+5)    db.Addresses.find({},{restaurant_id:1,name:1,borough:1,"address.zipcode":1,cuisine:1,_id:0}).limit     (5).pretty()
+
+6)    db.Addresses.find({"borough":"Bronx"},            {restaurant_id:1,name:1,borough:1,"address.zipcode":1,cuisine:1,_id:0}).pretty()
+
+7)    db.Addresses.find({"borough":"Bronx"},{restaurant_id:1,name:1,borough:1,"address.zipcode":1,cuisine:1,_id:0}).skip(5).pretty()
+
+8)    db.Addresses.find({"grades.score":{$gt:90}},{name:1}).pretty()
+{
+        "_id" : ObjectId("5c2608c359edf42829dc3d24"),
+        "name" : "Murals On 54/Randolphs'S"
+}
+{ "_id" : ObjectId("5c2608c359edf42829dc3dc2"), "name" : "Gandhi" }
+{ "_id" : ObjectId("5c2608c359edf42829dc3f24"), "name" : "Bella Napoli" }
+> db.Addresses.find({"grades.score":{$gt:90}},{name:1,_id:0}).pretty()
+{ "name" : "Murals On 54/Randolphs'S" }
+{ "name" : "Gandhi" }
+{ "name" : "Bella Napoli" }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
