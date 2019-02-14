@@ -1,0 +1,7 @@
+public static Mobile getByPrice(int price) {
+    for (Mobile mobile : Mobile.values()) { // iterate all the values of enum
+        if (mobile.price==price) { // compare the price
+            return mobile; // return it
+        }
+    }
+    return null; 
