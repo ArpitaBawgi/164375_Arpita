@@ -1,0 +1,1 @@
+db.Movie.insert({"title":"Inglorious Basterds","writer":"Quentin Tarantino","year":2009,"actors":["Brad Pitt","Diane Kruger","Eli Roth"]})

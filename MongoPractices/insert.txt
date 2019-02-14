@@ -1,0 +1,114 @@
+db.Users.insert([
+{"username" : "GoodGuyGreg",
+"first_name" : "Good Guy",
+ "last_name" : "Greg"
+},
+
+{
+"username" : "ScumbagSteve",
+ "full_name": [{"first" : "Scumbag"},{ "last": "Steve"}]
+}
+
+])
+
+db.Posts.insert([
+
+{username : "GoodGuyGreg",
+title : "Passes out at party",
+body :"Wakes up early and cleans house"},
+{
+username : "GoodGuyGreg",
+ title : "Steals your identity",
+ body : "Raises your credit score"
+},
+
+{
+username : "GoodGuyGreg",
+ title : "Reports a bug in your code",
+body : "Sends you a Pull Request"
+},
+{
+username : "ScumbagSteve", 
+title : "Borrows something", 
+body : "Sells it"
+},
+{
+username : "ScumbagSteve",
+title : "Borrows everything",
+ body : "The end"
+},
+{
+username : "ScumbagSteve",
+ title : "Forks your repo on github",
+ body : "Sets to private"
+}
+])
+
+
+
+
+
+ db.Posts.find().pretty()
+{
+        "_id" : ObjectId("5c25968862e31bc83e0c4c92"),
+        "username" : "GoodGuyGreg",
+        "title" : "Passes out at party",
+        "body" : "Wakes up early and cleans house"
+}
+{
+        "_id" : ObjectId("5c25968862e31bc83e0c4c93"),
+        "username" : "GoodGuyGreg",
+        "title" : "Steals your identity",
+        "body" : "Raises your credit score"
+}
+{
+        "_id" : ObjectId("5c25968862e31bc83e0c4c94"),
+        "username" : "GoodGuyGreg",
+        "title" : "Reports a bug in your code",
+        "body" : "Sends you a Pull Request"
+}
+{
+        "_id" : ObjectId("5c25968862e31bc83e0c4c95"),
+        "username" : "ScumbagSteve",
+        "title" : "Borrows something",
+        "body" : "Sells it"
+}
+{
+        "_id" : ObjectId("5c25968862e31bc83e0c4c96"),
+        "username" : "ScumbagSteve",
+        "title" : "Borrows everything",
+        "body" : "The end"
+}
+{
+        "_id" : ObjectId("5c25968862e31bc83e0c4c97"),
+        "username" : "ScumbagSteve",
+        "title" : "Forks your repo on github",
+        "body" : "Sets to private"
+}
+db.Comments.insert([
+{
+username : "GoodGuyGreg", 
+comment :"Hope you got a good deal!",
+ post : ObjectId("5c25968862e31bc83e0c4c95")
+},
+{
+username : "GoodGuyGreg",
+ comment : "What's mine is yours!",
+ post : ObjectId("5c25968862e31bc83e0c4c96")
+},
+{
+username : "GoodGuyGreg" ,
+comment : "Don't violate the licensing agreement!",
+ post : ObjectId("5c25968862e31bc83e0c4c97")
+},
+{
+username : "ScumbagSteve",
+comment : "It still isn't clean",
+ post : ObjectId("5c25968862e31bc83e0c4c92")
+},
+{
+username : "ScumbagSteve",
+comment : "Denied your PR cause I found a hack",
+post : ObjectId("5c25968862e31bc83e0c4c94")
+}
+])
