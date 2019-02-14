@@ -1,0 +1,44 @@
+<html>
+<head></head>
+<body>
+<script>
+var bill=[124,48,268];
+var len=bill.length;
+var i;
+var tip;
+var tips=new Array(3);
+var total=new Array(3);
+for(i=0;i<len;i++)
+{
+if(bill[i]<50)
+{
+tip=bill[i]*(0.2);
+tips[i]=tip;
+total[i]=tips[i]+bill[i];
+
+ }
+else if(bill[i]>=50 || bill[i]<200)
+{
+tip=bill[i]*(0.15);
+tips[i]=tip;
+total[i]=tips[i]+bill[i];
+}
+else {
+tip=bill[i]*(0.1);
+tips[i]=tip;
+total[i]=tips[i]+bill[i];
+}
+}
+document.write("The tip length is "+tips.length);
+document.write("<br />");
+document.write("The total bill length is "+total.length+"<br />");
+document.write("<br />");
+for(i=0;i<tips.length;i++)
+{
+document.write("The tip to be given for $ "+bill[i]+" is $ "+tips[i]+"<br />");
+document.write("The total bill to be pais is $ "+total[i]+"<br />"+"<br />");
+}
+
+</script>
+</body>
+</html>

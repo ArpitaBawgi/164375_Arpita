@@ -1,0 +1,27 @@
+<html>
+
+<body>
+<script>
+
+function Keg(_contains,_amount){
+ var contains=_contains;
+var amount=_amount;
+return{
+fill: function(bev,amtadd) {
+contains=bev;
+amount=amtadd;
+},
+add: function(){
+return contains;
+}
+}
+}
+var keg=new Keg("soda",100.0);
+keg.fill("pop",50.0);//modify the content
+
+document.write(keg.add());
+//document.write(keg.amount);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<html>
+<head></head>
+<body>
+<script>
+
+function Bank(acc_name,acc_bal,acc_num){
+var accname=acc_name;
+var accbal=acc_bal;
+const accnum=acc_num;
+return {
+user: function(xyz){
+accname=xyz;
+accnum=accno2;
+},
+take:function(){
+return accname;
+},
+take1:function(){
+return accnum;
+}
+}
+}
+var bank=new Bank("abcdef",4567,99876543);
+
+document.write(bank.take());
+document.write(bank.user("abc"));
+document.write("<br />");
+document.write(bank.take1());
+
+
+
+</script>
+
+</body>
+</html>

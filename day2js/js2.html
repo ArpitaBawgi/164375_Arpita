@@ -1,0 +1,38 @@
+<html>
+
+<head>
+<title> DEGREE (F AND C)</title>
+<script>
+ function conv()
+ { 
+ var f=document.f1.intg.value
+  if(f=="")
+  {
+    alert("you need to enter a number");
+  }
+  else if(isNaN(f))
+  {
+    alert("enter a number");
+  }
+  else{
+       
+   alert("user entered a valid one");
+ var c=(parseInt(f)-32)*5/9;
+ document.write(c +" degree in celsius");
+ }
+
+ }
+</script>
+</head>
+<body>The input your giving is in fahrenheit 
+<p><br/></p>
+<form name="f1">
+
+<input type="text" name="intg">
+<input type="submit" value="Show Results" onclick="conv()">
+
+</form>
+
+</body>
+
+</html>

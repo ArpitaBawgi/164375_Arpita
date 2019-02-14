@@ -1,0 +1,34 @@
+<html>
+<script type="TEXT/JAVASCRIPT">
+function time()
+{
+var currentTime=newDate()
+var hours=currentTime.getHours()
+var minutes=currentTime.getMinutes()
+var seconds=currentTime.getSeconds()
+
+//call the addzero function to add a zero in 
+front of numbers that are less than 10
+hours=AddZero(hours)
+minutes=AddZero(minutes)
+seconds=AddZero(seconds)
+
+//write out the time
+document.write("<b>"+hours+"hours"+minutes"minutes"+seconds+"seconds" </b>)
+}
+
+functionAddZero(i)
+{
+if(i<10)
+{i="0"+i}
+return i
+}
+</script>
+</head>
+
+//call the timefunction
+<body onload="Time()">
+</body>
+</html>
+
+

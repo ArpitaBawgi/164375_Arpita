@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script language="javascript" type="TEXT/JAVASCRIPT">
+
+function fun()
+{
+var t=new Date();
+var h=t.getHours();
+var m=t.getm();
+var s=t.getSeconds();
+
+h=AddZero(h);
+m=AddZero(m);
+s=AddZero(s);
+}
+
+function AddZero(i)
+{
+if(i<10)
+{i="0"+i;}
+return i;
+}
+document.write(h);
+</script>
+</head>
+
+<body onload="fun()">
+</body>
+</html>

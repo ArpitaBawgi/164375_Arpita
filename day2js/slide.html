@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset utf-8>
+<meta name="viewport" content="width=device-width",initial scale=1">
+
+<style>
+*{ box-sizing: border-box}
+body{font-family: Arial,sans-serif; margin:2}
+img{vertical-align:middle;}
+
+.mainslide{ max-width:1000px;
+position:relative;
+margin:auto;
+}
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.slides{
+animation-name:fade;
+animation-duration:2s;
+}
+</head>
+
+<body>
+<div class="mainslide">
+<div class="slides">
+<img src="1.jpg" style="100%">
+<img src="2.jpg" style="100%">
+<img src="3.png" style="100%">
+<img src="4.jfif" style="100%">
+<img src="5.jfif" style="100%">
+</div>
+<a class="prev" onclick="plus(-1)">&#10094;</a>
+<a class="next" onclick="plus(1)">&#10095;</a>
+
+</div>
+<br>
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span> 
+  <span class="dot" onclick="currentSlide(2)"></span> 
+  <span class="dot" onclick="currentSlide(3)"></span> 
+</div>
+
+<script>
+var slideIndex = 1;
+slides(slideIndex);
+
+function plus(n) {
+  slides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function slides(n) {
+  var i;
+  var sslides = document.getElementsByClassName("mainslides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
+</script>
+
+
+</body>
+</html>
