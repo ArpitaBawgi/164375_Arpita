@@ -1,0 +1,128 @@
+Dim PDFApp As Variant
+Dim PDFFolder, ExportFile As String
+Dim ClientRow, CustCol, DataCol, DataRow, LastDataRow As Long
+With Sheet1
+If Sheet1.Range("F3").Value = Empty Then
+MsgBox "Please Browse for your PDF Folder"
+GetPDFFolder
+Exit Sub
+End If
+PDFFolder = Range("F3").Value 'PDF Folder Location
+ExportFile = PDFFolder & "\datasource.csv"
+On Error Resume Next
+Kill (ExportFile) 'Delete Export File If it Exists
+On Error GoTo 0
+PDFApp = Shell("give path here")
+'On Error Resume Next
+'AppActivate (PDFApp)
+'On Error GoTo 0
+Application.Wait Now + 0.00001
+Application.SendKeys "^{e}", True
+Application.Wait Now + 0.00002
+
+Application.SendKeys "a", True
+Application.Wait Now + 0.00002
+
+Application.SendKeys "^{TAB}", True
+Application.Wait Now + 0.000001
+
+Application.SendKeys "^{a}", True
+Application.Wait Now + 0.00002
+
+Application.SendKeys "{TAB}", True
+Application.Wait Now + 0.00002
+
+Application.SendKeys "{TAB}", True
+Application.Wait Now + 0.00002
+
+Application.SendKeys "{TAB}", True
+Application.Wait Now + 0.00002
+
+Application.SendKeys "{TAB}", True
+
+Application.SendKeys "{ENTER}", True
+
+Application.SendKeys "+{TAB}", True
+
+Application.SendKeys "{ENTER}", True
+Application.Wait Now + 0.00002
+
+Application.Wait Now + 0.00002
+Application.SendKeys ExportFile, True
+Application.Wait Now + 0.00002
+
+Application.SendKeys "^{ENTER}", True
+Application.Wait Now + 0.00002
+
+Application.SendKeys "n", True
+Application.SendKeys "^{numlock}%s", True
+""
+Application.Wait Now + 0.00002
+Sheet2.Range("A2:G9999").ClearContents 'ClearExistingData
+On Error Resume Next
+'ActiveWorkbook.Connections("data source").Delete
+On Error GoTo 0
+
+With Sheet2.QueryTables.Add(Connection:=
+ "TEXT;" & ExportFile, Destination:=Sheet2.Range("$A$1"))
+  .Name = "data source"
+  .FieldNames = True
+  .RowNumbers = False
+  .FillAdjacentFormulas = False
+  .PreserveFormatting = True
+  .RefreshOnFileOpen = False
+  .RefreshStyle = xlOverwriteCells
+  .SavePassword = False
+  .SaveData = True
+  .AdjustColumnWidth = False
+  .RefreshPeriod = 0
+  .TextFilePromptOnRefresh = False
+  .TextFilePlatform = 437
+  .TextFileStartRow = 1
+  .TextFileParseType = xlDelimited
+  .TextFileTextQualifier = xlTextQualifierDoubleQuote
+  .TextFileConsecutiveDelimiter = False
+  .TextFileTabDelimiter = False
+  .TextFileSemicolonDelimiter = False
+  .TextFileCommaDelimiter = True
+  .TextFileSpaceDelimiter = False
+  .TextFile = ColumnDataTypes = Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+  .TextFileTrailingMinusNumbers = True
+  .Refresh BackgroundQuery:=False
+  End With
+  'Add in Data to main sheet
+  .Range("E8:09999").ClearContents
+  LastDataRow = Sheet2.Range("A99999").End(xlUp).Row
+  For CustCol = 5 To 14
+  DataCol = .Cells(6, CustCol).Value
+  Range(.Cells(8, CustCol), .Cells(LastDataRow + 6, CustCol)).Value = Range(Sheet2.Cells(2, DataCol), Sheet2.Cells(LastDataRow, DataCol)).Value
+  Next CustCol
+  'Add in Document Links
+  ClientRow = 8
+  For DataRow = 2 To LastDataRow
+  .Range("O" & ClientRow).Value = PDFFolder & "\" & Sheet2.Range("A" & DataRow).Value 'Document Path
+  .Hyperlinks.Add Anchor:=.Range("O" & ClientRow), Address:=PDFFolder & "\" & Sheet2.Range("A" & DataRow).Value, TextToDisplay:=PDFFolder & "\" & Sheet2.Range("A" & DataRow).Value
+  ClientRow = ClientRow + 1
+  Next DataRow
+  AppActivate "Microsoft Excel"
+  End With
+  End Sub
+  
+  
+  
+  
+ 
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
